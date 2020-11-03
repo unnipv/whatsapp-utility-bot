@@ -47,6 +47,65 @@ Will return the Instagram video download link.
 4. *#twt* _<post / video url>_
 Will return the Twitter video download link.
 
+Other:
+1. *#meme* _ <top text> _ | _ <bottom text> _
+To create a meme with top and bottom text
+Usage: send image with caption _ * # meme top me | you under * _, or you can also reply to an existing image.
+
+2. *#translate* _ <language code> _
+To interpret messages into the specified language.
+Usage: Reply / quote / reply the message you want to translate with _ *# translate id* _ <- id is the language code. language code can be seen at *https: //bit.ly/33FVldE*
+Here are the codes for some popularly used languages:
+English : en
+Dutch: nl
+French: fr
+Malayalam: ml
+German: de
+Hindi: hi
+Indonesian: id
+Italian: it
+Spanish: es
+Tamil: ta
+Telugu: te
+
+Features added by Unni:
+1.1 *#theri* @user
+Bot will insult the mentioned user in Malayalam
+
+1.2 *#addtheri* _<malayalam insult>_
+Adds Malayalam insults into a database which is used by the "#theri" feature
+
+1.3 *#therilist*
+Prints all the insults from the database
+
+1.4 *#thericount*
+Shows the number of insults in the database
+
+2.1 *#gaali* @user
+Bot will insult the mentioned user in some Indian language
+
+2.2 *#addgaali* _<desi insult>_
+Adds desi insults into a database which is used by the "#gaali" feature
+
+2.3 *#gaalilist*
+Prints all the insults from the database
+
+2.4 *#gaaliicount*
+Try it
+
+2.5 *#countbatabsdk*
+Shows the number of gaalis in the database
+
+3. *#emojipasta* <text as a single paragraph (the input will break at new line)>
+What do you think it's do? Call the FBI?
+
+4. *#score* <team name> or <league name>
+Displays the last scores from last 6 matches of the team if there is no match today. 
+If there is a match today that is going on or ended recently, only that score will be displayed. 
+Currently supports most majors sports and leagues involving two teams and two numerical scores that show up if you Google search "<team name> score"
+(Live score for cricket matches not working, will be fixed soon enough)
+
+
 Etc:
 1. *#tnc*
 Displays Bot Terms and Conditions.
