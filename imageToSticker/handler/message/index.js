@@ -23,6 +23,7 @@ module.exports = msgHandler = async (client = new Client(), message) => {
         // const {PythonShell} =require('python-shell'); 
         const {spawn} = require('child_process')
         const path = require('path')
+        const { execSync } = require('child_process')
 
         //I have no idea what I'm doing ends here
 
@@ -280,9 +281,27 @@ module.exports = msgHandler = async (client = new Client(), message) => {
             break
         
         //Colony commands added by cosmopense    
+        case 'mukesh':
+            client.sendPtt(from,"D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\anthass.mpeg")
+            break
+        case 'audio':
+            let songnamelist = body.trim().split('#audio ')
+            let songarg = body.trim().split('#audio ')[1]
+            // let song_name=''
+            // for (let i = 0; i < songnamelist.length; i++) {
+            //     song_name+song_name+songnamelist[i]
+            // }
+            let downloader_script = 'D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\utils\\mediadownloader.py'
+            await execSync('python3 ' + downloader_script + ' ' +songarg, (erro,stdout,stderr) => { 
+                console.log("Python file executed");
+            });
+            // songfilename = path.join("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\", `${song_name}.mp3`)
+            // "D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\Novemberrain.mp3"
+            client.sendPtt(from,"D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\song.mp3")
+            break
         case 'theri':
             if (!isGroupMsg) return client.reply(from, 'Sorry, this command can only be used within the group! [Group Only]', id)
-            if (mentionedJidList.length != 1) return client.reply(from, 'Inna ketto: \n\n https://youtu.be/Ofg-kQzytWc', id)
+            if (mentionedJidList.length != 1) return client.sendLinkWithAutoPreview(from, "https://youtu.be/Ofg-kQzytWc", "Inna ketto:", id)
             let fs = require("fs")
             let theritext = fs.readFileSync("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\handler\\message\\text\\therilist.txt")
             let textByLine = theritext.toString().split("\n")
@@ -388,7 +407,7 @@ module.exports = msgHandler = async (client = new Client(), message) => {
         case 'emojipasta':
             let copypasta = body.trim().split('#emojipasta ')[1]
             let path_to_script = 'D:\\maymay\\whatsapp-utility-bot\\EmojipastaBot\\src\\emojipastaprinter.py'
-            const { execSync } = require('child_process')
+            // const { execSync } = require('child_process')
             execSync('python3 ' + path_to_script + ' ' +copypasta, (erro,stdout,stderr) => { 
                 console.log("Python file executed");
               });
