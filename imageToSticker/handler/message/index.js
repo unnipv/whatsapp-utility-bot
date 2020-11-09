@@ -386,7 +386,7 @@ module.exports = msgHandler = async (client = new Client(), message) => {
             break
         
         case 'gaalicount':
-            client.reply(from,'ghinti nahi aati, dilli se hu bhenchod')
+            client.reply(from,'ginti nahi aati, dilli se hu bhenchod')
             break
     
         case 'gaalilist':
