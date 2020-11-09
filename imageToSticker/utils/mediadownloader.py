@@ -17,9 +17,10 @@ page = requests.get(URL, headers=headers)
 soup = BeautifulSoup(page.content, 'html.parser')
 try:    
     dict_res = json.loads(soup.text)
-    for first_result in dict_res['results']:
+    for result in dict_res['results']:
         try:
-            link = first_result['video']['url']
+            link = result['video']['url']
+            first_result=result
             break
         except:
             continue

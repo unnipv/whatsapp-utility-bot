@@ -295,10 +295,39 @@ module.exports = msgHandler = async (client = new Client(), message) => {
             await execSync('python3 ' + downloader_script + ' ' +songarg, (erro,stdout,stderr) => { 
                 console.log("Python file executed");
             });
-            // songfilename = path.join("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\", `${song_name}.mp3`)
-            // "D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\Novemberrain.mp3"
-            client.sendPtt(from,"D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\song.mp3")
+            await client.sendPtt(from,"D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\song.mp3")
+            
+            const audiofs = require('fs')
+            audiofs.unlink("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\song.mp3", (err) => {
+            if (err) {
+                console.error(err)
+                return
+            }
+            //file removed
+            })
             break
+        case 'audiodownload':
+            let songarglist = body.trim().split('#audio ')
+            let songargument = body.trim().split('#audio ')[1]
+                // let song_name=''
+                // for (let i = 0; i < songnamelist.length; i++) {
+                //     song_name+song_name+songnamelist[i]
+                // }
+            let song_downloader_script = 'D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\utils\\mediadownloader.py'
+            await execSync('python3 ' + song_downloader_script + ' ' +songargument, (erro,stdout,stderr) => { 
+                console.log("Python file executed");
+            });
+            await client.sendFile(from,"\..\\media\\audio\\song.mp3")
+                
+            const audiodownloadfs = require('fs')
+            audiodownloadfs.unlink("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\song.mp3", (err) => {
+            if (err) {
+                console.error(err)
+                return
+                }
+            //file removed
+            })
+            break   
         case 'theri':
             if (!isGroupMsg) return client.reply(from, 'Sorry, this command can only be used within the group! [Group Only]', id)
             if (mentionedJidList.length != 1) return client.sendLinkWithAutoPreview(from, "https://youtu.be/Ofg-kQzytWc", "Inna ketto:", id)
