@@ -23,6 +23,3 @@ Install the dependencies:
 > npm start
 ```
 When running it for the first time you need to scan the QR using your WhatsApp phone application
-
-## Note:
-Some of the features added by me use the absolute file paths on my PC. You will have to change these paths for your code to work.

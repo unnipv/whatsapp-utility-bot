@@ -1,7 +1,7 @@
 require('dotenv').config()
 const { decryptMedia, Client } = require('@open-wa/wa-automate')
 const moment = require('moment-timezone')
-moment.tz.setDefault('Asia/Jakarta').locale('id')
+moment.tz.setDefault('Asia/Kolkata').locale('id')
 const { downloader, cekResi, removebg, urlShortener, meme, translate, getLocationData } = require('../../lib')
 const { msgFilter, color, processTime, isUrl } = require('../../utils')
 const mentionList = require('../../utils/mention')
@@ -282,7 +282,7 @@ module.exports = msgHandler = async (client = new Client(), message) => {
         
         //Colony commands added by cosmopense    
         case 'mukesh':
-            client.sendPtt(from,"D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\anthass.mpeg")
+            client.sendPtt(from,"..\\media\\audio\\anthass.mpeg")
             break
         case 'audio':
             let songnamelist = body.trim().split('#audio ')
@@ -291,14 +291,14 @@ module.exports = msgHandler = async (client = new Client(), message) => {
             // for (let i = 0; i < songnamelist.length; i++) {
             //     song_name+song_name+songnamelist[i]
             // }
-            let downloader_script = 'D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\utils\\mediadownloader.py'
+            let downloader_script = '..\\utils\\mediadownloader.py'
             await execSync('python3 ' + downloader_script + ' ' +songarg, (erro,stdout,stderr) => { 
                 console.log("Python file executed");
             });
-            await client.sendPtt(from,"D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\song.mp3")
-            
+            await client.sendPtt(from,"..\\media\\audio\\song.mp3")
+        
             const audiofs = require('fs')
-            audiofs.unlink("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\song.mp3", (err) => {
+            audiofs.unlink("..\\media\\audio\\song.mp3", (err) => {
             if (err) {
                 console.error(err)
                 return
@@ -313,14 +313,14 @@ module.exports = msgHandler = async (client = new Client(), message) => {
                 // for (let i = 0; i < songnamelist.length; i++) {
                 //     song_name+song_name+songnamelist[i]
                 // }
-            let song_downloader_script = 'D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\utils\\mediadownloader.py'
+            let song_downloader_script = '..\\utils\\mediadownloader.py'
             await execSync('python3 ' + song_downloader_script + ' ' +songargument, (erro,stdout,stderr) => { 
                 console.log("Python file executed");
             });
             await client.sendFile(from,"\..\\media\\audio\\song.mp3")
                 
             const audiodownloadfs = require('fs')
-            audiodownloadfs.unlink("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\song.mp3", (err) => {
+            audiodownloadfs.unlink("..\\media\\audio\\song.mp3", (err) => {
             if (err) {
                 console.error(err)
                 return
@@ -332,7 +332,7 @@ module.exports = msgHandler = async (client = new Client(), message) => {
             if (!isGroupMsg) return client.reply(from, 'Sorry, this command can only be used within the group! [Group Only]', id)
             if (mentionedJidList.length != 1) return client.sendLinkWithAutoPreview(from, "https://youtu.be/Ofg-kQzytWc", "Inna ketto:", id)
             let fs = require("fs")
-            let theritext = fs.readFileSync("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\handler\\message\\text\\therilist.txt")
+            let theritext = fs.readFileSync("..\\handler\\message\\text\\therilist.txt")
             let textByLine = theritext.toString().split("\n")
             theri_ind = Math.floor((Math.random() * textByLine.length))
             await client.sendTextWithMentions(from, `@${mentionedJidList[0].replace('@c.us', '')} ${textByLine[theri_ind]}`)
@@ -341,20 +341,20 @@ module.exports = msgHandler = async (client = new Client(), message) => {
         case 'addtheri':
             let therinew = body.trim().split('#addtheri ')[1]
             let filep = require("fs")
-            filep.appendFileSync("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\handler\\message\\text\\therilist.txt", '\n' + therinew)
+            filep.appendFileSync("text\\therilist.txt", '\n' + therinew)
             client.reply(from, `${therinew} added`)
             break 
 
         case 'thericount':
             let countfile = require("fs")
-            let countertext = countfile.readFileSync("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\handler\\message\\text\\therilist.txt")
+            let countertext = countfile.readFileSync("text\\therilist.txt")
             let numlines = countertext.toString().split("\n")
             client.reply(from, `${numlines.length} therikal njan padichu `)
             break
 
         case 'therilist':
             let therifile = require("fs")
-            let listeoftheri = therifile.readFileSync("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\handler\\message\\text\\therilist.txt")
+            let listeoftheri = therifile.readFileSync("text\\therilist.txt")
             let therilines = listeoftheri.toString().split("\n")
             client.reply(from, `Here are the top ${therilines.length} words you should know when talking to a Malayali:\n\n${listeoftheri}`)
             break
@@ -363,7 +363,7 @@ module.exports = msgHandler = async (client = new Client(), message) => {
             if (!isGroupMsg) return client.reply(from, 'Sorry, this command can only be used within the group! [Group Only]', id)
             // if (mentionedJidList.length != 1) return client.reply(from, 'Inna ketto: \n\n https://youtu.be/Ofg-kQzytWc', id)
             let gaalifs = require("fs")
-            let gaalitext = gaalifs.readFileSync("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\handler\\message\\text\\gaalilist.txt")
+            let gaalitext = gaalifs.readFileSync("text\\gaalilist.txt")
             let gaalitextByLine = gaalitext.toString().split("\n")
             gaali_ind = Math.floor((Math.random() * gaalitextByLine.length))
             if (mentionedJidList.length != 1) {return client.reply(from, `${gaalitextByLine[gaali_ind]}`, id)}
@@ -374,24 +374,24 @@ module.exports = msgHandler = async (client = new Client(), message) => {
         case 'addgaali':
             let gaalinew = body.trim().split('#addgaali ')[1]
             let fileg = require("fs")
-            fileg.appendFileSync("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\handler\\message\\text\\gaalilist.txt", '\n' + gaalinew)
+            fileg.appendFileSync("text\\gaalilist.txt", '\n' + gaalinew)
             client.reply(from, `${gaalinew} added`)
             break 
     
         case 'countbatabsdk':
             let gaalicountfile = require("fs")
-            let gaalicountertext = gaalicountfile.readFileSync("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\handler\\message\\text\\gaalilist.txt")
+            let gaalicountertext = gaalicountfile.readFileSync("text\\gaalilist.txt")
             let gaalinumlines = gaalicountertext.toString().split("\n")
             client.reply(from, `I have mastered ${gaalinumlines.length} gaalis`)
             break
         
         case 'gaalicount':
-            client.reply(from,'ginti nahi aati, dilli se hu bhenchod')
+            client.reply(from,'ghinti nahi aati, dilli se hu bhenchod')
             break
     
         case 'gaalilist':
             let gaalifile = require("fs")
-            let listeofgaali = gaalifile.readFileSync("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\handler\\message\\text\\gaalilist.txt")
+            let listeofgaali = gaalifile.readFileSync("text\\gaalilist.txt")
             let gaalilines = listeofgaali.toString().split("\n")
             client.reply(from, `Here are the top ${gaalilines.length} words you should know when talking to a cultured Indian:\n\n${listeofgaali}`)
             break
@@ -418,7 +418,7 @@ module.exports = msgHandler = async (client = new Client(), message) => {
             break
         case 'score':
             let team_name = body.trim().split('#score ')[1]
-            let script_path = 'D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\utils\\'
+            let script_path = '..\\utils\\'
             function runScript(){
                 return spawn('python3', [
                    "-u",
@@ -435,7 +435,7 @@ module.exports = msgHandler = async (client = new Client(), message) => {
 
         case 'emojipasta':
             let copypasta = body.trim().split('#emojipasta ')[1]
-            let path_to_script = 'D:\\maymay\\whatsapp-utility-bot\\EmojipastaBot\\src\\emojipastaprinter.py'
+            let path_to_script = '..\\EmojipastaBot\\src\\emojipastaprinter.py'
             // const { execSync } = require('child_process')
             execSync('python3 ' + path_to_script + ' ' +copypasta, (erro,stdout,stderr) => { 
                 console.log("Python file executed");
@@ -443,7 +443,7 @@ module.exports = msgHandler = async (client = new Client(), message) => {
             
             // setTimeout(function(){ console.log("waiting"); }, 700);
             const lineReader = require('line-reader');
-            lineReader.eachLine('D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\emojipasta.txt', (line, last) => {
+            lineReader.eachLine('..\\media\\emojipasta.txt', (line, last) => {
                   if (last===true)
                   client.reply(from,`${line}`)
             });
@@ -460,7 +460,7 @@ module.exports = msgHandler = async (client = new Client(), message) => {
             }
             emojiline=emojiline+']'
             let emojif = require("fs")
-            emojif.appendFileSync("D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\handler\\message\\text\\emojilist.txt", '\n' + emojiline + ',')
+            emojif.appendFileSync("text\\emojilist.txt", '\n' + emojiline + ',')
             client.reply(from, `${emojiline} added`)
             break
         // Group Commands (group admin only)

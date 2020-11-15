@@ -30,11 +30,11 @@ try:
         file_name ='song'
         # for arg in sys.argv[1:]:
         #     file_name+=str(arg)
-        outtmpl = "D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\media\\audio\\" + file_name + '.%(ext)s'
+        outtmpl = "..\\media\\audio\\" + file_name + '.%(ext)s'
         ydl_opts = {
             'format': 'bestaudio/best',
             'outtmpl': outtmpl,
-            'ffmpeg_location' : 'D:\\maymay\\whatsapp-utility-bot\\imageToSticker\\utils',
+            'ffmpeg_location' : '..\\utils',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
